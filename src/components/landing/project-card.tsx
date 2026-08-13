@@ -36,7 +36,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
   );
 
   const renderHeader = () => (
-    <div className="flex min-h-11 flex-wrap items-center justify-between gap-3">
+    <div className="flex min-h-11 flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
       <div className="flex flex-col gap-0.5">
         <a
           href={project.url}
@@ -49,7 +49,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
         </a>
         <span className="text-[13px] text-muted-foreground">{project.role}</span>
       </div>
-      <div className="flex flex-col items-end gap-1">
+      <div className="flex items-center gap-2 sm:shrink-0 sm:flex-col sm:items-end sm:gap-1">
         <Pill variant="meta">
           {project.active && (
             <span className="inline-block size-1.5 rounded-full bg-primary" />
