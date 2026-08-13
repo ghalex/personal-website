@@ -1,4 +1,5 @@
-import { about, posts, projects, site, stack } from "@/lib/content";
+import { about, projects, site, stack } from "@/lib/content";
+import { isPublished, posts } from "@/lib/posts";
 
 export const dynamic = "force-static";
 
@@ -42,6 +43,7 @@ export function GET() {
     "## Writing",
     "",
     posts
+      .filter(isPublished)
       .map(
         (p) =>
           `- [${p.title}](https://${site.domain}/blog/${p.slug}) — ${p.description} (${p.date}, ${p.readingTime} min read)`,

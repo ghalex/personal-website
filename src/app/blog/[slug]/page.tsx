@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { PostBody, PostHeader, PostMetaBar, PostNav } from "@/components/blog";
 import { BackToTop, StripeBand } from "@/components/common";
 import { SiteFooter, SiteHeader } from "@/components/landing";
-import { getPost, isPublished, posts } from "@/lib/content";
+import { getPost, isPublished, posts } from "@/lib/posts";
 
 export const dynamic = "force-static";
 export const dynamicParams = false;

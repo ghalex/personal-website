@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 const navItems = [
   { key: "projects", label: "Projects", href: "/#projects" },
   { key: "stack", label: "Stack", href: "/#stack" },
-  { key: "blog", label: "Blog", href: "/#blog" },
+  { key: "blog", label: "Blog", href: "/blog" },
 ] as const;
 
 type SiteHeaderProps = {

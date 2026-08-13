@@ -1,52 +1,56 @@
+import ReactMarkdown, { type Components } from "react-markdown";
+
 import { Section } from "@/components/common";
-import type { PostBlock, PostInline, PublishedPost } from "@/types";
+import type { PublishedPost } from "@/types";
 
 type PostBodyProps = {
   post: PublishedPost;
 };
 
+/* react-markdown passes its AST `node` to custom components; strip it before spreading onto DOM elements */
+function strip<P extends { node?: unknown }>(props: P) {
+  const rest = { ...props };
+  delete rest.node;
+  return rest;
+}
+
+const components: Components = {
+  h2: (props) => (
+    <h2 className="mt-3.5 -mb-1.5 text-xl font-semibold tracking-[-0.01em]" {...strip(props)} />
+  ),
+  h3: (props) => <h3 className="mt-2 -mb-1.5 text-base font-semibold" {...strip(props)} />,
+  a: (props) => <a className="link" {...strip(props)} />,
+  ol: (props) => (
+    <ol
+      className="flex flex-col gap-2 text-[13.5px] [counter-reset:steps] [&>li]:flex [&>li]:gap-2.5 [&>li]:[counter-increment:steps] [&>li]:before:shrink-0 [&>li]:before:font-mono [&>li]:before:text-xs [&>li]:before:leading-[1.9] [&>li]:before:text-primary [&>li]:before:content-[counter(steps,decimal-leading-zero)]"
+      {...strip(props)}
+    />
+  ),
+  ul: (props) => (
+    <ul className="flex list-disc flex-col gap-2 pl-5 text-[13.5px]" {...strip(props)} />
+  ),
+  blockquote: (props) => (
+    <blockquote className="border-l-2 border-primary pl-4 text-muted-foreground" {...strip(props)} />
+  ),
+  pre: (props) => (
+    <pre
+      className="overflow-x-auto rounded-md border border-border bg-card p-4 font-mono text-[13px] leading-[1.7] [&>code]:border-0 [&>code]:bg-transparent [&>code]:p-0"
+      {...strip(props)}
+    />
+  ),
+  code: (props) => (
+    <code
+      className="rounded border border-border bg-card px-1 py-px font-mono text-[13px]"
+      {...strip(props)}
+    />
+  ),
+};
+
 export function PostBody({ post }: PostBodyProps) {
-  const renderInline = (content: PostInline[]) =>
-    content.map((part, index) => {
-      if (typeof part === "string") return part;
-      if ("href" in part)
-        return (
-          <a key={index} href={part.href} className="link">
-            {part.text}
-          </a>
-        );
-      if ("em" in part) return <em key={index}>{part.text}</em>;
-      return <strong key={index}>{part.text}</strong>;
-    });
-
-  const renderSteps = (items: PostInline[][]) => (
-    <div className="flex flex-col gap-2 text-[13.5px]">
-      {items.map((item, index) => (
-        <div key={index} className="flex gap-2.5">
-          <span className="shrink-0 font-mono text-xs leading-[1.9] text-primary">
-            {String(index + 1).padStart(2, "0")}
-          </span>
-          <span>{renderInline(item)}</span>
-        </div>
-      ))}
-    </div>
-  );
-
-  const renderBlock = (block: PostBlock, index: number) => {
-    if (block.type === "h2")
-      return (
-        <h2 key={index} className="mt-3.5 -mb-1.5 text-xl font-semibold tracking-[-0.01em]">
-          {block.text}
-        </h2>
-      );
-    if (block.type === "steps") return <div key={index}>{renderSteps(block.items)}</div>;
-    return <p key={index}>{renderInline(block.content)}</p>;
-  };
-
   return (
     <Section>
       <article className="flex flex-col gap-[18px] px-6 pt-8 pb-10 text-[15px] leading-[1.75] text-pretty">
-        {post.body.map(renderBlock)}
+        <ReactMarkdown components={components}>{post.content}</ReactMarkdown>
       </article>
     </Section>
   );

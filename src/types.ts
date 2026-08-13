@@ -15,17 +15,6 @@ export type StackGroup = {
   items: string[];
 };
 
-export type PostInline =
-  | string
-  | { text: string; href: string }
-  | { text: string; em: true }
-  | { text: string; strong: true };
-
-export type PostBlock =
-  | { type: "p"; content: PostInline[] }
-  | { type: "h2"; text: string }
-  | { type: "steps"; items: PostInline[][] };
-
 export type BlogPost = {
   slug: string;
   title: string;
@@ -34,8 +23,9 @@ export type BlogPost = {
   date?: string;
   readingTime?: number;
   tags?: string[];
-  body?: PostBlock[];
+  /** Markdown body; absent while the post is a draft */
+  content?: string;
 };
 
 export type PublishedPost = BlogPost &
-  Required<Pick<BlogPost, "description" | "date" | "readingTime" | "tags" | "body">>;
+  Required<Pick<BlogPost, "description" | "date" | "readingTime" | "tags" | "content">>;

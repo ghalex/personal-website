@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { Section } from "@/components/common";
-import { isPublished } from "@/lib/content";
+import { isPublished } from "@/lib/posts";
 import { cn } from "@/lib/utils";
 import type { BlogPost } from "@/types";
 
@@ -12,7 +12,7 @@ type PostNavProps = {
 
 export function PostNav({ previous, next }: PostNavProps) {
   const hrefFor = (post?: BlogPost) =>
-    post && isPublished(post) ? `/blog/${post.slug}` : "/#blog";
+    post && isPublished(post) ? `/blog/${post.slug}` : "/blog";
 
   const renderCell = (label: string, post?: BlogPost, alignEnd = false) => (
     <Link

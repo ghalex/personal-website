@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { Section, SectionLabel } from "@/components/common";
-import { isPublished, posts } from "@/lib/content";
+import { isPublished, posts } from "@/lib/posts";
 import { formatPostDate } from "@/lib/utils";
 import type { BlogPost } from "@/types";
 

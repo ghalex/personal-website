@@ -14,7 +14,7 @@ export function PostMetaBar({ post }: PostMetaBarProps) {
     <Section>
       <div className="flex flex-wrap items-center justify-between gap-3 px-6 py-3.5">
         <Link
-          href="/#blog"
+          href="/blog"
           className="flex items-center gap-2 font-mono text-xs text-muted-foreground transition-colors hover:text-primary"
         >
           <ArrowLeft size={13} strokeWidth={2} aria-hidden />
