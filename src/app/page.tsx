@@ -26,7 +26,7 @@ export default function Home() {
     <>
       <SiteHeader />
       <main id="top">
-        <StripeBand />
+        <StripeBand solid={false} />
         <Hero />
         <QuickFacts />
         <SocialLinks />

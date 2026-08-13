@@ -34,7 +34,7 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
     <>
       <SiteHeader activeNav="blog" />
       <main id="top">
-        <StripeBand />
+        <StripeBand solid={false} />
         <PostMetaBar post={post} />
         <PostHeader post={post} />
         <StripeBand solid={false} className="h-14" />
