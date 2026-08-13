@@ -32,7 +32,7 @@ export const projects: Project[] = [
     role: "Founder · Professional parametric CAD for makers",
     meta: "beta",
     active: true,
-    logoSrc: "/logos/draw/zenve3d-sketch.png",
+    logoSrc: "/logos/zenve3d.png",
     bullets: [
       "**Full parametric CAD** — editable sketches, constraints, dimensions, features, and a complete modeling history: change an early dimension and the rest of the model updates with it.",
       "Every field takes **expressions** — a parameter's name works anywhere a number does.",
@@ -48,7 +48,7 @@ export const projects: Project[] = [
     role: "Founder · AI-native log observability platform",
     meta: "active",
     active: true,
-    logoSrc: "/logos/draw/logzai-sketch-v3.png",
+    logoSrc: "/logos/logzai.png",
     bullets: [
       "**AI-native log analysis** — chat with your logs, get any log explained, and let automatic pattern and anomaly detection surface problems before you go looking.",
       "**Purpose-built log agent** — custom tool suite and prompt architecture that plans multi-step investigations across millions of logs and answers with evidence.",
@@ -72,7 +72,7 @@ export const projects: Project[] = [
     role: "Co-Founder & CEO · Automated trading platform",
     meta: "300K+ tx",
     active: false,
-    logoSrc: "/logos/draw/zapant-sketch.png",
+    logoSrc: "/logos/zapant.png",
     bullets: [
       "**Automated trading bots** for stocks and crypto — pick a public bot with strict risk-management protocols, connect your broker, and go live in minutes.",
       "[**Zplang**](https://zaplang.com), an open-source Clojure-inspired trading language with built-in assets and indicators — a strategy is a few lines of code, backtested and executed from the terminal with [**ZapCLI**](https://zapcli.com).",
@@ -87,7 +87,7 @@ export const projects: Project[] = [
     role: "Solo founder · Trading-journal SaaS",
     meta: "€2K MRR",
     active: true,
-    logoSrc: "/logos/draw/zapant-sketch.png",
+    logoSrc: "/logos/antsignals.png",
     bullets: [
       "**A trading journal that finds your edge** — import trades straight from your broker and let the reports show which setups make money and which quietly bleed it.",
       "**Data-driven feedback** on everything: peak-performance hours, position sizing, pattern and mistake detection — across stocks, indices, forex, options, and crypto.",
@@ -102,7 +102,7 @@ export const projects: Project[] = [
     role: "SVG charting library for Vue 3",
     meta: "150+ stars",
     active: false,
-    logoSrc: "/logos/draw/vue3charts-sketch.png",
+    logoSrc: "/logos/vue3charts.png",
     bullets: [
       "**#1 search result for “vue3 charts”** — SVG charting for Vue 3, intuitive and extensible.",
       "**Charts are templates** — Grid, Bar, Line, and Area compose as declarative layers.",

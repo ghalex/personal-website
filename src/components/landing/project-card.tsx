@@ -9,29 +9,16 @@ type ProjectCardProps = {
 
 export function ProjectCard({ project }: ProjectCardProps) {
   const renderLogo = () => (
-    <div className="size-11 shrink-0 overflow-hidden rounded-xl border border-border bg-stripes shadow-xs [--stripe:rgb(0_0_0/2%)] dark:[--stripe:rgb(255_255_255/2.5%)]">
-      {project.logoSrc &&
-        (project.logoSrc.startsWith("/logos/draw/") ? (
-          <div
-            role="img"
-            aria-label={`${project.name} logo`}
-            className="size-full bg-black dark:bg-white"
-            style={{
-              maskImage: `url(${project.logoSrc})`,
-              maskSize: "cover",
-              WebkitMaskImage: `url(${project.logoSrc})`,
-              WebkitMaskSize: "cover",
-            }}
-          />
-        ) : (
-          <Image
-            src={project.logoSrc}
-            alt={`${project.name} logo`}
-            width={44}
-            height={44}
-            className="size-full object-cover"
-          />
-        ))}
+    <div className="size-11 shrink-0 overflow-hidden rounded-xl border border-border bg-stripes shadow-xs">
+      {project.logoSrc && (
+        <Image
+          src={project.logoSrc}
+          alt={`${project.name} logo`}
+          width={44}
+          height={44}
+          className="size-full object-cover"
+        />
+      )}
     </div>
   );
 
