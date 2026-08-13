@@ -19,6 +19,12 @@ export const site = {
   zenve3d: "https://zenve3d.com",
 };
 
+export const about = [
+  "I'm a builder at heart. After 20 years in software I keep coming back to the same thing: taking an idea from zero to a working product with my own hands — the storage engine, the UI, the go-to-market, all of it.",
+  "Right now that means [LogzAI](https://logzai.com), an AI-native log observability platform I built solo on a hand-built Delta Lake storage engine (one of 3 winners at the inVest accelerator Demo Day), and [Zenve3d](https://zenve3d.com), my newest venture. Before these I co-founded Zapant, a trading platform that executed 300K+ live transactions, bootstrapped from AntSignals — a trading-journal SaaS I grew to ~€2K/month with zero ad spend.",
+  "I like hard technical problems (I once wrote an OS from scratch), small teams, and products that make money without permission.",
+];
+
 export const projects: Project[] = [
   {
     name: "Zenve3D",
@@ -31,9 +37,10 @@ export const projects: Project[] = [
       "**Full parametric CAD** — editable sketches, constraints, dimensions, features, and a complete modeling history: change an early dimension and the rest of the model updates with it.",
       "Every field takes **expressions** — a parameter's name works anywhere a number does.",
       "One modern **C++ geometry engine**, native on macOS and iPad — touch and Pencil on the tablet, full desktop workflows on the Mac.",
+      "Built-in **MCP server** — AI assistants plug straight into the modeler: sketch, model, and inspect parts through natural language.",
       "Professional CAD workflows **without enterprise complexity or enterprise pricing** — built for makers: 3D-printed parts, CNC components, robotics, enclosures, prototypes.",
     ],
-    tags: ["C++", "Swift", "Geometry kernel", "macOS", "iPad"],
+    tags: ["C++", "Swift", "Geometry kernel", "MCP", "macOS", "iPad"],
   },
   {
     name: "LogzAI",
@@ -44,6 +51,7 @@ export const projects: Project[] = [
     logoSrc: "/logos/draw/logzai-sketch-v3.png",
     bullets: [
       "**AI-native log analysis** — chat with your logs, get any log explained, and let automatic pattern and anomaly detection surface problems before you go looking.",
+      "**Purpose-built log agent** — custom tool suite and prompt architecture that plans multi-step investigations across millions of logs and answers with evidence.",
       "Custom storage engine on the **Delta Lake open format**, over S3 or local disk — **6M+ logs** for a single organization, full-dataset SQL queries in seconds.",
       "**Full SQL** over everything through DuckDB — query builder with attribute filters, saved and shared queries, and smart alerts when something goes wrong.",
       "Open format end-to-end: no bespoke index, **no lock-in** — any tool that reads Delta Lake can read your logs.",
@@ -119,27 +127,70 @@ export const projects: Project[] = [
 ];
 
 export const stack: StackGroup[] = [
-  { num: "01", name: "Languages", items: ["TypeScript", "JavaScript", "Python", "C#"] },
+  {
+    num: "01",
+    name: "Languages",
+    items: ["TypeScript", "JavaScript", "Python", "C++", "C", "C#"],
+  },
   {
     num: "02",
-    name: "AI & Data",
-    items: ["LLM systems", "RAG", "Agents", "Delta Lake", "Parquet", "DuckDB", "Big Data"],
+    name: "AI Engineering",
+    items: [
+      "AI System Design",
+      "Multi-Agent Systems",
+      "RAG Pipelines",
+      "MCP & Tools",
+      "Agentic Workflows",
+      "Custom Architectures",
+      "Claude & LLM APIs"
+    ],
   },
   {
     num: "03",
-    name: "Backend",
-    items: ["Node.js", "Microservices", "Distributed systems", "Docker", "Kubernetes"],
+    name: "Data",
+    items: ["Delta Lake", "Parquet", "DuckDB", "Storage engines", "S3"],
   },
-  { num: "04", name: "Frontend", items: ["React", "Vue", "SVG / charts"] },
-  { num: "05", name: "Cloud", items: ["AWS", "Azure", "GCP"] },
   {
-    num: "06",
+    num: "04",
+    name: "Backend",
+    items: [
+      "Node.js",
+      "Moleculer microservices",
+      "FastAPI",
+      "Real-time & event-driven",
+      "PostgreSQL",
+      "MongoDB",
+      "Redis",
+      "NATS",
+      "RabbitMQ",
+      "Kafka",
+      "Docker",
+      "Kubernetes",
+    ],
+  },
+  {
+    num: "05",
+    name: "Frontend",
+    items: [
+      "HTML & CSS",
+      "React",
+      "React Native",
+      "Vue",
+      "Mobile apps",
+      "SVG / charts",
+      "Every framework since jQuery",
+    ],
+  },
+  { num: "06", name: "Cloud", items: ["AWS", "Azure", "GCP", "Linode"] },
+  {
+    num: "07",
     name: "Leadership",
     items: [
       "Org building from zero",
+      "EM → Senior EM",
+      "Hiring at scale",
       "M&A team transition",
       "Pre-sales & RFPs",
-      "Hiring at scale",
       "EM mentoring",
     ],
   },

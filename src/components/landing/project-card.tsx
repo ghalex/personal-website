@@ -15,7 +15,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
           <div
             role="img"
             aria-label={`${project.name} logo`}
-            className="size-full bg-primary"
+            className="size-full bg-black dark:bg-white"
             style={{
               maskImage: `url(${project.logoSrc})`,
               maskSize: "cover",

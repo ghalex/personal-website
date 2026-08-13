@@ -40,7 +40,13 @@ export function SiteFooter() {
           )}
           {renderCell("Location", site.locationShort)}
           {renderCell("Shipping since", site.shippingSince)}
-          {renderCell("Typeface", "Geist", false)}
+          {renderCell(
+            "For agents",
+            <a href="/agents.md" className="link">
+              agents.md
+            </a>,
+            false,
+          )}
         </div>
         <div className="grid grid-cols-1 border-b border-border sm:grid-cols-2">
           {renderCell(
