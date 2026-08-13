@@ -1,9 +1,9 @@
 # ghalex.dev — Style Reference
-> Engineering-blueprint portfolio: a single bordered rail, mono labels, stripe bands, one green accent.
+> Engineering-blueprint portfolio: a single bordered rail, mono labels, stripe bands, one blue accent.
 
 **Theme:** light + dark (class-based, default light, persisted in `localStorage["ghalex-theme"]`)
 
-The design language is a "technical drawing" aesthetic imported from the Claude Design project `ghalex.dev.dc.html`: an off-white page carrying one centered, side-ruled column (max-width **692px**) whose left/right borders run the full page height. Sections are separated by hairline borders, headings are uppercase mono micro-labels, and diagonal-stripe bands mark the page's structural seams. A single green accent is the only chromatic color. Tokens live in `src/app/globals.css` (`:root` / `.dark`) under the standard shadcn semantic names — keep this file and that one in sync.
+The design language is a "technical drawing" aesthetic imported from the Claude Design project `ghalex.dev.dc.html`: an off-white page carrying one centered, side-ruled column (max-width **692px**) whose left/right borders run the full page height. Sections are separated by hairline borders, headings are uppercase mono micro-labels, and diagonal-stripe bands mark the page's structural seams. A single blue accent is the only chromatic color. Tokens live in `src/app/globals.css` (`:root` / `.dark`) under the standard shadcn semantic names — keep this file and that one in sync.
 
 ## Tokens — Colors
 
@@ -13,14 +13,14 @@ Defined as OKLCH variables in `src/app/globals.css`, exposed via `@theme inline`
 |-------|-------|------|------|
 | `--background` | `oklch(0.9911 0 0)` ≈ #fcfcfc | `oklch(0.1448 0 0)` ≈ #0a0a0a | Page background |
 | `--foreground` | `oklch(0.2046 0 0)` ≈ #171717 | `oklch(0.9491 0 0)` ≈ #ededed | Primary text |
-| `--primary` | `oklch(0.62 0.15 155)` green | `oklch(0.75 0.15 155)` green | **The accent.** Logo `.dev`, active dots, bullet dashes, counts, hover borders/links |
+| `--primary` | `oklch(0.62 0.15 250)` blue | `oklch(0.75 0.15 250)` blue | **The accent.** Logo `.dev`, active dots, bullet dashes, counts, hover borders/links |
 | `--card` / `--muted` / `--accent` | `oklch(0.9702 0 0)` ≈ #f5f5f5 | `oklch(0.1913 0 0)` ≈ #141414 | Row hover surface (`hover:bg-card`) |
 | `--muted-foreground` | `oklch(0.5324 0 0)` ≈ #6f6f6f | `oklch(0.6432 0 0)` ≈ #8f8f8f | Secondary text, labels, icons |
 | `--border` / `--input` | `oklch(0.9219 0 0)` ≈ #e4e4e4 | `oklch(0.2504 0 0)` ≈ #242424 | All hairlines, tiles, pills |
-| `--ring` | green (as `--primary`) | green | Focus rings |
+| `--ring` | blue (as `--primary`) | blue | Focus rings |
 | `--stripe` | `rgb(0 0 0 / 4.5%)` | `rgb(255 255 255 / 5%)` | Diagonal stripe motif (custom token) |
 
-**Accent discipline:** green is used only in small doses — a dot, a dash, a count, a hover state. Never as a fill for large surfaces. Destructive red exists but has no role on the landing page.
+**Accent discipline:** blue is used only in small doses — a dot, a dash, a count, a hover state. Never as a fill for large surfaces. Destructive red exists but has no role on the landing page.
 
 ## Tokens — Typography
 
@@ -63,8 +63,8 @@ Primitives in `src/components/common/` (all exported via barrel):
 - **`Container`** — the 692px bordered rail.
 - **`Section`** — `border-b` section wrapping a `Container`; takes `id` for anchor nav.
 - **`StripeBand`** — the 36px seam; props `solid` (paint rail interior) and `bordered`.
-- **`SectionLabel`** — uppercase mono h2, optionally with a green count: `Projects <span className="text-primary">(6)</span>`.
-- **`Pill`** — `rounded-full` bordered chip; variants: `tag` (mono 11px, muted — tech tags), `meta` (mono 11.5px, fg — status, may contain a 6px green dot when active), `item` (sans 12.5px — stack items).
+- **`SectionLabel`** — uppercase mono h2, optionally with an accent-colored count: `Projects <span className="text-primary">(6)</span>`.
+- **`Pill`** — `rounded-full` bordered chip; variants: `tag` (mono 11px, muted — tech tags), `meta` (mono 11.5px, fg — status, may contain a 6px accent dot when active), `item` (sans 12.5px — stack items).
 - **`IconTile`** — bordered square icon frame; `sm` 30px (fact rows), `lg` 44px + shadow (social links, also used as link class via `iconTileVariants`).
 - **`ThemeToggle`**, **`LocalTime`**, **`BackToTop`** — the only client components; leaves only.
 
@@ -89,7 +89,7 @@ Brand SVGs (X, GitHub, LinkedIn) live in `src/components/icons/`; everything els
 - Use `cn()` for className merging; semantic tokens for every color.
 
 ### Don't
-- Don't introduce a second accent color — green (`--primary`) is the only chroma.
+- Don't introduce a second accent color — blue (`--primary`) is the only chroma.
 - Don't use filled buttons or heavy shadows; controls are 1px-bordered and flat.
 - Don't hardcode hex/rgb or pixel radii — tokens only (`--stripe` included).
 - Don't mark pages or sections `'use client'` — interactivity stays in the three client leaves.

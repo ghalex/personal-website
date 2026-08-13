@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { Pill } from "@/components/common";
+import { Pill, RichText } from "@/components/common";
 import type { Project } from "@/types";
 
 type ProjectCardProps = {
@@ -74,7 +74,9 @@ export function ProjectCard({ project }: ProjectCardProps) {
               <span className="shrink-0 font-mono text-xs leading-[1.8] text-primary">
                 —
               </span>
-              <span>{bullet}</span>
+              <span>
+                <RichText text={bullet} />
+              </span>
             </div>
           ))}
         </div>

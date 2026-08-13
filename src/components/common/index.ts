@@ -3,6 +3,7 @@ export * from "./container";
 export * from "./icon-tile";
 export * from "./local-time";
 export * from "./pill";
+export * from "./rich-text";
 export * from "./section";
 export * from "./section-label";
 export * from "./stripe-band";
