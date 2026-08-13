@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "skills": {
+    "nextjs-architect": {
+      "source": "ghalex/skills",
+      "sourceType": "github",
+      "computedHash": "2175040942ea3fbbbca6b8406530cfddadeb814f19f10ba0a48e0da743d3ae13"
+    },
+    "nextjs-rules": {
+      "source": "ghalex/skills",
+      "sourceType": "github",
+      "computedHash": "863ef06a96801f9cd9d74c6f2d7502f529abfaa1864dfb1bb97ba2693d8b849c"
+    }
+  }
+}
