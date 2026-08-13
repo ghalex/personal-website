@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import { Pill, RichText } from "@/components/common";
+import { cn } from "@/lib/utils";
 import type { Project } from "@/types";
 
 type ProjectCardProps = {
@@ -9,14 +10,17 @@ type ProjectCardProps = {
 
 export function ProjectCard({ project }: ProjectCardProps) {
   const renderLogo = () => (
-    <div className="size-11 shrink-0 overflow-hidden rounded-xl border border-border bg-stripes shadow-xs">
+    <div className="size-11 shrink-0 overflow-hidden rounded-xl border border-border bg-stripes shadow-xs [--stripe:rgb(0_0_0/2%)] dark:[--stripe:rgb(255_255_255/2.5%)]">
       {project.logoSrc && (
         <Image
           src={project.logoSrc}
           alt={`${project.name} logo`}
           width={44}
           height={44}
-          className="size-full object-cover"
+          className={cn(
+            "size-full object-cover",
+            project.logoSrc.startsWith("/logos/draw/") && "brightness-0 dark:invert",
+          )}
         />
       )}
     </div>
