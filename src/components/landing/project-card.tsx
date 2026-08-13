@@ -49,16 +49,13 @@ export function ProjectCard({ project }: ProjectCardProps) {
         </a>
         <span className="text-[13px] text-muted-foreground">{project.role}</span>
       </div>
-      <div className="flex items-center gap-2 sm:shrink-0 sm:flex-col sm:items-end sm:gap-1">
+      <div className="flex items-center sm:shrink-0">
         <Pill variant="meta">
           {project.active && (
             <span className="inline-block size-1.5 rounded-full bg-primary" />
           )}
           {project.meta}
         </Pill>
-        <span className="font-mono text-[11px] text-muted-foreground">
-          {project.period}
-        </span>
       </div>
     </div>
   );

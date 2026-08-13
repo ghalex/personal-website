@@ -4,7 +4,7 @@ export const site = {
   name: "Alexandru Ghiura",
   handle: "ghalex",
   domain: "ghalex.dev",
-  tagline: "I build engineering organizations from zero.",
+  tagline: "I love building products from zero.",
   description: "Founder, engineer, builder of things.",
   email: "ghalex@gmail.com",
   location: "Timisoara, Romania",
@@ -25,7 +25,6 @@ export const projects: Project[] = [
     url: "https://zenve3d.com",
     role: "Founder · Professional parametric CAD for makers",
     meta: "beta",
-    period: "2026 — now",
     active: true,
     logoSrc: "/logos/zenve3d.png",
     bullets: [
@@ -41,7 +40,6 @@ export const projects: Project[] = [
     url: "https://logzai.com",
     role: "Founder · AI-native log observability platform",
     meta: "active",
-    period: "09.2025 — now",
     active: true,
     logoSrc: "/logos/logzai.svg",
     bullets: [
@@ -65,7 +63,6 @@ export const projects: Project[] = [
     url: "https://zapant.com",
     role: "Co-Founder & CEO · Automated trading platform",
     meta: "300K+ tx",
-    period: "01.2022 — 09.2025",
     active: false,
     logoSrc: "/logos/zapant.png",
     bullets: [
@@ -81,7 +78,6 @@ export const projects: Project[] = [
     url: "https://antsignals.com",
     role: "Solo founder · Trading-journal SaaS",
     meta: "€2K MRR",
-    period: "2020 — now",
     active: true,
     logoSrc: "/logos/antsignals.png",
     bullets: [
@@ -97,7 +93,6 @@ export const projects: Project[] = [
     url: "https://github.com/ghalex/vue3-charts",
     role: "SVG charting library for Vue 3",
     meta: "150+ stars",
-    period: "open source",
     active: false,
     logoSrc: "/logos/vue3charts.png",
     bullets: [
@@ -113,7 +108,6 @@ export const projects: Project[] = [
     url: "https://github.com/ghalex/phios",
     role: "Operating system from scratch",
     meta: "hobby",
-    period: "open source",
     active: false,
     bullets: [
       "**Boots on bare metal** — assembly bootloader into a C++ kernel, shipped as a bootable x86 image.",
