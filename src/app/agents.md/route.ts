@@ -55,6 +55,6 @@ export function GET() {
   ].join("\n");
 
   return new Response(md, {
-    headers: { "Content-Type": "text/markdown; charset=utf-8" },
+    headers: { "Content-Type": "text/plain; charset=utf-8" },
   });
 }
