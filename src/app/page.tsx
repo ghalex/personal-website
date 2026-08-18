@@ -31,9 +31,9 @@ export default function Home() {
         <QuickFacts />
         <SocialLinks />
         <AboutSection />
+        <BlogSection />
         <ProjectsSection />
         <StackSection />
-        <BlogSection />
         <StripeBand solid={false} />
         <SiteFooter />
         <StripeBand bordered={false}>
