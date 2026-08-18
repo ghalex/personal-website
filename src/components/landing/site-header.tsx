@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { Container, ThemeToggle } from "@/components/common";
+import { Container, LogoMark, ThemeToggle } from "@/components/common";
 import { cn } from "@/lib/utils";
 
 const navItems = [
@@ -17,7 +17,11 @@ export function SiteHeader({ activeNav }: SiteHeaderProps) {
   return (
     <header className="sticky top-0 z-20 border-b border-border bg-background/85 backdrop-blur-sm">
       <Container className="flex h-[52px] items-center justify-between px-6">
-        <Link href="/#top" className="font-mono text-sm font-medium">
+        <Link
+          href="/#top"
+          className="flex items-center gap-2 font-mono text-sm font-medium"
+        >
+          <LogoMark className="size-5" />
           ghalex<span className="text-primary">.dev</span>
         </Link>
         <nav className="flex items-center gap-[18px] text-[13px]">

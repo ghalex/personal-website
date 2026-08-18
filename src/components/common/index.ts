@@ -2,6 +2,7 @@ export * from "./back-to-top";
 export * from "./container";
 export * from "./icon-tile";
 export * from "./local-time";
+export * from "./logo-mark";
 export * from "./pill";
 export * from "./rich-text";
 export * from "./section";
