@@ -7,10 +7,13 @@ import type { BlogPost, PublishedPost } from "@/types";
 
 const postsDir = path.join(process.cwd(), "content", "blog");
 
+const coversDir = path.join(process.cwd(), "public", "blog");
+
 function readPost(fileName: string): BlogPost {
   const slug = fileName.replace(/\.md$/, "");
   const raw = fs.readFileSync(path.join(postsDir, fileName), "utf-8");
   const { data, content } = matter(raw);
+  const hasCover = fs.existsSync(path.join(coversDir, slug, "cover.webp"));
   return {
     slug,
     title: data.title,
@@ -18,6 +21,7 @@ function readPost(fileName: string): BlogPost {
     date: data.date,
     readingTime: data.readingTime,
     tags: data.tags,
+    cover: hasCover ? `/blog/${slug}/cover.webp` : undefined,
     content: content.trim() || undefined,
   };
 }

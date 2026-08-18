@@ -23,6 +23,8 @@ export type BlogPost = {
   date?: string;
   readingTime?: number;
   tags?: string[];
+  /** URL path of the cover image; present when public/blog/<slug>/cover.webp exists */
+  cover?: string;
   /** Markdown body; absent while the post is a draft */
   content?: string;
 };

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { Section, SectionLabel } from "@/components/common";
@@ -27,8 +28,22 @@ export function BlogSection() {
           href={isPublished(post) ? `/blog/${post.slug}` : "#blog"}
           className="grid grid-cols-[120px_1fr] items-center gap-[18px] border-t border-border px-6 py-[18px] transition-colors hover:bg-card"
         >
-          <div className="flex h-[68px] items-center justify-center rounded-md border border-border bg-stripes">
-            <span className="font-mono text-[10px] text-muted-foreground">cover</span>
+          <div className="h-[68px] overflow-hidden rounded-md border border-border bg-stripes">
+            {post.cover ? (
+              <Image
+                src={post.cover}
+                alt=""
+                width={240}
+                height={136}
+                className="size-full object-cover"
+              />
+            ) : (
+              <div className="flex size-full items-center justify-center">
+                <span className="font-mono text-[10px] text-muted-foreground">
+                  cover
+                </span>
+              </div>
+            )}
           </div>
           <div className="flex flex-col gap-[5px]">
             <span className="text-[14.5px] leading-[1.4] font-semibold text-pretty">
