@@ -52,12 +52,12 @@ export function SiteFooter() {
           {renderCell(
             "Now building",
             <>
-              <a href={site.logzai} className="link">
-                LogzAI
+              <a href={site.zenve3d} className="link">
+                Zenve3D
               </a>{" "}
               <span className="text-border">{"//"}</span>{" "}
-              <a href={site.zenve3d} className="link">
-                Zenve3d
+              <a href={site.llmbrain} className="link">
+                LLMBrain
               </a>
             </>,
           )}

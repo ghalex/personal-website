@@ -17,6 +17,7 @@ export const site = {
   linkedin: "https://linkedin.com/in/ghalex",
   logzai: "https://logzai.com",
   zenve3d: "https://zenve3d.com",
+  llmbrain: "https://llmbrain.dev",
 };
 
 export const about = [
@@ -26,6 +27,22 @@ export const about = [
 ];
 
 export const projects: Project[] = [
+  {
+    name: "LLMBrain",
+    url: "https://llmbrain.dev",
+    role: "Founder · Cross-project brain for coding agents",
+    meta: "building",
+    active: true,
+    logoSrc: "/logos/llmbrain.png",
+    bullets: [
+      "**Agent-first remote MCP server** — coding agents start every session blind and siloed per repo; LLMBrain is the one hosted place they read and write context about *all* of your projects.",
+      "**Canonical docs per project**, maintained by the agent itself — architecture, data model, product, status — with a **docs_health** signal that tells the agent what has gone stale.",
+      "**Milestones and issues** as the roadmap — the agent picks up work, marks what is in progress, and records where it left off for the next session.",
+      "**Tool descriptions are the UX** — the primary user is an LLM, so every response is shaped for a context window instead of a screen.",
+      "One-line install — `curl | bash` bootstraps an npm CLI that wires MCP config, session hooks, and a conventions skill into Claude Code and Codex.",
+    ],
+    tags: ["Python", "FastAPI", "FastMCP", "PostgreSQL", "React", "Next.js", "MCP"],
+  },
   {
     name: "Zenve3D",
     url: "https://zenve3d.com",
