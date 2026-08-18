@@ -19,7 +19,25 @@ export async function generateMetadata({
   const { slug } = await params;
   const post = getPost(slug);
   if (!post || !isPublished(post)) return {};
-  return { title: post.title, description: post.description };
+  return {
+    title: post.title,
+    description: post.description,
+    openGraph: {
+      type: "article",
+      title: post.title,
+      description: post.description,
+      url: `/blog/${post.slug}`,
+      publishedTime: post.date,
+      tags: post.tags,
+      images: post.cover ? [{ url: post.cover, width: 1536, height: 1024 }] : undefined,
+    },
+    twitter: {
+      card: post.cover ? "summary_large_image" : "summary",
+      title: post.title,
+      description: post.description,
+      images: post.cover ? [post.cover] : undefined,
+    },
+  };
 }
 
 export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">) {
