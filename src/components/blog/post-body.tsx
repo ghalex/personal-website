@@ -44,6 +44,10 @@ const components: Components = {
       {...strip(props)}
     />
   ),
+  img: (props) => (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img className="w-full rounded-md border border-border" alt="" {...strip(props)} />
+  ),
 };
 
 export function PostBody({ post }: PostBodyProps) {
