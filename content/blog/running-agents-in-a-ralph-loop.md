@@ -2,7 +2,7 @@
 title: "The Ralph loop: running coding agents for hours without losing the plot"
 description: "Why long agent sessions decay, how a dumb bash loop fixes it, and how LLMBrain's /work-on-milestone skill turns a milestone into a Ralph loop with a persistent brain as the state store."
 date: "2026-08-22"
-readingTime: 8
+readingTime: 9
 tags:
   - llmbrain
   - agents
@@ -13,13 +13,15 @@ Anyone who has run a coding agent on a real task — not a demo, a multi-hour gr
 
 The fix that actually works in practice is embarrassingly stupid, and it has a name: the **Ralph loop**.
 
+This isn't theory for me. I run this pattern today on Zenve3D: I hand a master agent a milestone, it works through the issues one by one, and every worker starts with a fresh context while [LLMBrain](https://llmbrain.dev) carries the project state between them. The rest of this post is how that works, from the dumb bash loop it started as to the skill it became.
+
 ## What a Ralph loop is
 
 The technique comes from [Geoffrey Huntley](https://ghuntley.com/ralph/), who named it after Ralph Wiggum from The Simpsons — the kid who is not the sharpest but keeps cheerfully showing up. In its original form it is literally this:
 
 ```bash
 while :; do
-  cat PROMPT.md | claude
+  cat PROMPT.md | claude -p
 done
 ```
 
@@ -31,7 +33,7 @@ People have used this to build entire codebases overnight. Not because each iter
 
 ## The problem it actually solves
 
-It's worth being precise about the failure mode, because "the context window is too small" is not it. Windows are enormous now. The problem is that **an agent's judgment degrades long before its window fills** — retrieval gets worse, instructions from fifty turns ago stop binding, and the model starts attending to its own earlier mistakes as if they were ground truth. The industry has settled on calling this context rot.
+It's worth being precise about the failure mode, because "the context window is too small" is not it. Windows are enormous now. The problem is that **an agent's judgment degrades long before its window fills** — retrieval gets worse, instructions from fifty turns ago stop binding, and the model starts attending to its own earlier mistakes as if they were ground truth. This degradation is commonly called *context rot*.
 
 You cannot prompt your way out of it, because the prompt is *in* the rotting context. The only real fix is architectural:
 
@@ -48,27 +50,28 @@ This is exactly the shape [LLMBrain](https://llmbrain.dev) was built for. It's a
 Wire that into a Ralph loop and every piece of loop state gets a proper home:
 
 ```
-                        ┌─────────────────────────────┐
-                        │           LLMBrain           │
-                        │                              │
-        start_session ──▶  status doc   "where we are" │
-        get_issue     ──▶  issues       the work queue │
-        add_comment   ──▶  comments     handoff notes  │
-        add_decision  ──▶  decisions    the "why" log  │
-                        └──────────────▲───────────────┘
-                                       │ read / write
-              ┌────────────────────────┴───────────────────────┐
-              │                                                │
-   ┌──────────┴─────────┐    fresh context per issue   ┌───────┴────────┐
-   │   iteration N      │  ─────────────────────────▶  │  iteration N+1 │
-   │  pick issue → work │      (session dies here)     │  pick → work   │
-   └────────────────────┘                              └────────────────┘
+       ┌───────────────────────────┐
+       │          LLMBrain         │
+       │                           │
+       │  status doc  where we are │
+       │  issues      the queue    │
+       │  comments    handoffs     │
+       │  decisions   the "why"    │
+       └─────────────▲─────────────┘
+                     │ read / write
+        ┌────────────┴────────────┐
+        │                         │
+┌───────┴─────┐             ┌─────┴────────┐
+│ iteration N │  fresh ctx  │ iteration N+1│
+│ pick → work │ ──────────▶ │ pick → work  │
+└─────────────┘             └──────────────┘
+  session dies; the state above survives
 ```
 
 Concretely, each iteration of the loop maps onto brain calls:
 
 - **Orientation** is one call. `start_session` returns the project card, the status doc, and the open issues — the agent knows where the last iteration left off without grepping the repo for a plan file.
-- **The work queue is the issue tracker**, not a markdown list. Each issue has a real body (the spec) and a comment thread. The agent marks an issue `in_progress` when it picks it up and `done` when it finishes, so the queue can never silently drift from reality.
+- **The work queue is the issue tracker**, not a markdown list. Each issue has a real body (the spec) and a comment thread. The agent marks an issue `in_progress` when it picks it up and `done` when it finishes — in the master/worker variant below, closing an issue is deliberately the master's job — so the queue doesn't silently drift from reality the way a hand-edited plan file does.
 - **Handoffs are issue comments.** An iteration that dies mid-task leaves a comment: what it tried, what failed, where to resume. The next fresh session reads it and continues instead of rediscovering.
 - **Reasoning outlives the session.** Every "chose X over Y because Z" goes into the decision log. This is the single biggest upgrade over file-based Ralph: fresh iterations inherit not just the state of the work but the *why*, which is precisely what stops iteration twelve from cheerfully undoing iteration four.
 
@@ -100,10 +103,14 @@ Workers run **sequentially, not fanned out**, because issues in one milestone ro
 
 The loop ends when the milestone has no open issues, when you stop it, or when everything left needs a human decision. On the way out it does the thing naive Ralph loops always skip: comments on any unfinished issue with the tree state and where to resume, records the loop's own decisions, and updates the status doc — so the *next* loop's first `start_session` call starts exactly where this one stopped.
 
+Worth naming the adjacent thing, because Claude Code now ships it natively: [`/goal`](https://code.claude.com/docs/en/goal) keeps a single session re-running until a condition you set is met. It's useful, and it's solving a different problem. A `/goal` session grinds toward its condition inside one context window — the very thing that rots — and everything it learned dies with the session. The Ralph loop makes the opposite trade: fresh context per issue, with the state that matters held outside the session entirely, where the next loop, the next repo clone, or the next machine can read it.
+
 ## The takeaway
 
 The Ralph loop's insight is that agent sessions should be cattle, not pets: fresh context per unit of work, all state external, let the loop grind. What the original bash version leaves unsolved is the quality of that external state — and that, more than the loop itself, is what determines whether hour six is still productive.
 
-Give the loop a real brain — a queue that can't drift, handoffs that survive death, decisions that don't get re-litigated — and the pattern stops being a party trick for overnight demos and becomes a way you actually ship: point it at a milestone, walk away, and come back to a working tree and an honest account of what happened.
+Give the loop a real brain — a queue that stays honest, handoffs that survive death, decisions that don't get re-litigated — and the pattern stops being a party trick for overnight demos and becomes a way you actually ship: point it at a milestone, walk away, and come back to a working tree and an honest account of what happened.
 
 `/work-on-milestone M1`. That's the whole workflow.
+
+I'm building this into [LLMBrain](https://llmbrain.dev) right now, and it's what runs my own projects. If you're experimenting with long-running coding agents and want a brain behind your loops, try it — and tell me what your loops do with it.
