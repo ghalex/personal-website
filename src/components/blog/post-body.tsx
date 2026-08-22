@@ -22,7 +22,7 @@ const components: Components = {
   a: (props) => <a className="link" {...strip(props)} />,
   ol: (props) => (
     <ol
-      className="flex flex-col gap-2 text-[13.5px] [counter-reset:steps] [&>li]:flex [&>li]:gap-2.5 [&>li]:[counter-increment:steps] [&>li]:before:shrink-0 [&>li]:before:font-mono [&>li]:before:text-xs [&>li]:before:leading-[1.9] [&>li]:before:text-primary [&>li]:before:content-[counter(steps,decimal-leading-zero)]"
+      className="flex flex-col gap-2 text-[13.5px] [counter-reset:steps] [&>li]:relative [&>li]:pl-7 [&>li]:[counter-increment:steps] [&>li]:before:absolute [&>li]:before:top-0 [&>li]:before:left-0 [&>li]:before:font-mono [&>li]:before:text-xs [&>li]:before:leading-[1.9] [&>li]:before:text-primary [&>li]:before:content-[counter(steps,decimal-leading-zero)]"
       {...strip(props)}
     />
   ),
