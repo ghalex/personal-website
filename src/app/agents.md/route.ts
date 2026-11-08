@@ -26,7 +26,7 @@ export function GET() {
     `- GitHub: ${site.github}`,
     `- X / Twitter: ${site.x}`,
     `- LinkedIn: ${site.linkedin}`,
-    `- Now building: ${site.zenve3d} and ${site.llmbrain}`,
+    `- Now building: ${site.kvbox} and ${site.zenve3d}`,
     "",
     "## About",
     "",

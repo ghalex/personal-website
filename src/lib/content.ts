@@ -18,21 +18,38 @@ export const site = {
   logzai: "https://logzai.com",
   zenve3d: "https://zenve3d.com",
   llmbrain: "https://llmbrain.dev",
+  kvbox: "https://kvbox.sh",
 };
 
 export const about = [
   "I'm a builder at heart. After 20 years in software I keep coming back to the same thing: taking an idea from zero to a working product with my own hands — the storage engine, the UI, the go-to-market, all of it.",
-  "Right now that means [LogzAI](https://logzai.com), an AI-native log observability platform I built solo on a hand-built Delta Lake storage engine (one of 3 winners at the inVest accelerator Demo Day), and [Zenve3d](https://zenve3d.com), my newest venture. Before these I co-founded Zapant, a trading platform that executed 300K+ live transactions, bootstrapped from AntSignals — a trading-journal SaaS I grew to ~€2K/month with zero ad spend.",
+  "Right now that means [kvbox](https://kvbox.sh), my newest venture — real Firecracker microVMs with Docker-like ergonomics, snapshots that clone warm, and a cloud that bills by the hour — alongside [LogzAI](https://logzai.com), an AI-native log observability platform I built solo on a hand-built Delta Lake storage engine (one of 3 winners at the inVest accelerator Demo Day), and [Zenve3d](https://zenve3d.com), parametric CAD for makers. Before these I co-founded Zapant, a trading platform that executed 300K+ live transactions, bootstrapped from AntSignals — a trading-journal SaaS I grew to ~€2K/month with zero ad spend.",
   "I like hard technical problems (I once wrote an OS from scratch), small teams, and products that make money without permission.",
 ];
 
 export const projects: Project[] = [
   {
+    name: "kvbox",
+    url: "https://kvbox.sh",
+    role: "Founder · Firecracker microVMs with Docker-like ergonomics",
+    meta: "building",
+    active: true,
+    logoSrc: "/logos/kvbox.png",
+    bullets: [
+      "**Real VMs, not containers** — every box is a Firecracker microVM with its own kernel. `kvbox new` boots one in about 2 s, `kvbox connect` drops you into a shell, and whatever runs inside stays inside: agents, untrusted code, a whole Docker stack.",
+      "**Snapshot = image, with live state** — freeze a running box (memory, CPU state, disk — only the pages it touched) and start warm clones from it in ~0.3 s with every process still running. Set up a toolchain once, fork it forever.",
+      "**Built for agents** — every command takes `--json` and `kvbox exec` hands back the exit code with stdin and stdout flowing through, so an agent gets a disposable machine instead of your laptop.",
+      "**`kvbox deploy`** — run it in a React, Next.js or Node project and the app gets its own box and HTTPS address at `*.kvbox.app`; run it again to ship the next version.",
+      "**Two pieces, one API** — a thin CLI (macOS, Linux, Windows) talks HTTP to `kvbox-server`, the host daemon that owns Firecracker, VMs and networking. `kvbox login` points it at the kvbox cloud control plane instead, which picks a host with room and bills by the hour.",
+    ],
+    tags: ["TypeScript", "Node.js", "Hono", "Firecracker", "KVM", "PostgreSQL", "React"],
+  },
+  {
     name: "LLMBrain",
     url: "https://llmbrain.dev",
     role: "Founder · Cross-project brain for coding agents",
-    meta: "building",
-    active: true,
+    meta: "closed Nov 2026",
+    active: false,
     logoSrc: "/logos/llmbrain.png",
     bullets: [
       "**Agent-first remote MCP server** — coding agents start every session blind and siloed per repo; LLMBrain is the one hosted place they read and write context about *all* of your projects.",
