@@ -23,7 +23,7 @@ export const site = {
 
 export const about = [
   "I'm a builder at heart. After 20 years in software I keep coming back to the same thing: taking an idea from zero to a working product with my own hands — the storage engine, the UI, the go-to-market, all of it.",
-  "Right now that means [kvbox](https://kvbox.sh), my newest venture — real Firecracker microVMs with Docker-like ergonomics, snapshots that clone warm, and a cloud that bills by the hour — alongside [LogzAI](https://logzai.com), an AI-native log observability platform I built solo on a hand-built Delta Lake storage engine (one of 3 winners at the inVest accelerator Demo Day), and [Zenve3d](https://zenve3d.com), parametric CAD for makers. Before these I co-founded Zapant, a trading platform that executed 300K+ live transactions, bootstrapped from AntSignals — a trading-journal SaaS I grew to ~€2K/month with zero ad spend.",
+  "Right now that means [kvbox](https://kvbox.sh), where I'm Technical Adviser — real Firecracker microVMs with Docker-like ergonomics, snapshots that clone warm, and a cloud that bills by the hour — alongside [LogzAI](https://logzai.com), an AI-native log observability platform I built solo on a hand-built Delta Lake storage engine (one of 3 winners at the inVest accelerator Demo Day), and [Zenve3d](https://zenve3d.com), parametric CAD for makers. Before these I co-founded Zapant, a trading platform that executed 300K+ live transactions, bootstrapped from AntSignals — a trading-journal SaaS I grew to ~€2K/month with zero ad spend.",
   "I like hard technical problems (I once wrote an OS from scratch), small teams, and products that make money without permission.",
 ];
 
@@ -31,7 +31,7 @@ export const projects: Project[] = [
   {
     name: "kvbox",
     url: "https://kvbox.sh",
-    role: "Founder · Firecracker microVMs with Docker-like ergonomics",
+    role: "Technical Adviser · Firecracker microVMs with Docker-like ergonomics",
     meta: "building",
     active: true,
     logoSrc: "/logos/kvbox.png",
